@@ -11,6 +11,9 @@ python = "^3.11"
 fugashi = "^1.2.1"
 unidic = "^1.1.0"
 
+[tool.poetry.group.dev.dependencies]
+autopep8 = "^2.0.2"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
