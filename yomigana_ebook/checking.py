@@ -22,4 +22,12 @@ def is_kanji_only(text: str) -> bool:
 
 
 def is_kanji(char: str) -> bool:
-    return "CJK UNIFIED IDEOGRAPH" in unicodedata.name(char)
+    unicode_name = unicodedata.name(char)
+
+    if "CJK UNIFIED IDEOGRAPH" in unicode_name:
+        return True
+
+    if "IDEOGRAPHIC ITERATION MARK" in unicode_name:
+        return True
+
+    return False
