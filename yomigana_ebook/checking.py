@@ -1,5 +1,7 @@
 import unicodedata
 
+from yomigana_ebook.constants import ALL_NUMBER
+
 
 def is_mark(char: str) -> bool:
     return char == "*"
@@ -21,6 +23,14 @@ def is_kanji_only(text: str) -> bool:
     return True
 
 
+def is_number_only(text: str) -> bool:
+    for char in text:
+        if not is_number(char):
+            return False
+
+    return True
+
+
 def is_kanji(char: str) -> bool:
     unicode_name = unicodedata.name(char)
 
@@ -31,3 +41,7 @@ def is_kanji(char: str) -> bool:
         return True
 
     return False
+
+
+def is_number(char: str) -> bool:
+    return char in ALL_NUMBER

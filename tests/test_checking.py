@@ -1,8 +1,8 @@
 import pytest
 import unicodedata
 
-from yomigana_ebook.constants import ALL_HIRA, ALL_KATA
-from yomigana_ebook.checking import is_hira_only, is_kata_only, is_kanji_only
+from yomigana_ebook.constants import ALL_HIRA, ALL_KATA, ALL_NUMBER
+from yomigana_ebook.checking import is_hira_only, is_kata_only, is_kanji_only, is_number_only
 
 
 @pytest.mark.parametrize(
@@ -49,3 +49,17 @@ def test_is_kata_only(test_case: str, text: str, kata: str, expected: bool):
 )
 def test_is_kanji_only(test_case: str, kanji: str, expected: bool):
     assert is_kanji_only(kanji) == expected
+
+
+@pytest.mark.parametrize(
+    "test_case, text, expected",
+    [
+        ("all number", ALL_NUMBER, True),
+        ("all hira", ALL_HIRA, False),
+        ("all kata", ALL_KATA, False),
+        ("all kanji", "漢字", False),
+        ("compound", "感じ", False),
+    ]
+)
+def test_is_number_only(test_case: str, text: str, expected: bool):
+    assert is_number_only(text) == expected

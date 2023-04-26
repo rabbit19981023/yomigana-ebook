@@ -1,6 +1,6 @@
 from yomigana_ebook.analyzer import Analyzer
 from yomigana_ebook.converter import kata2hira
-from yomigana_ebook.checking import is_mark, is_hira_only, is_kata_only, is_kanji_only
+from yomigana_ebook.checking import is_mark, is_hira_only, is_kata_only, is_kanji_only, is_number_only
 
 
 def yomituki_sentence(sentence: str) -> str:
@@ -24,6 +24,8 @@ def yomituki_word(surface: str, kata: str) -> str:
         return surface
     if is_kanji_only(surface):
         return ruby_wrap(surface, hira)
+    if is_number_only(surface):
+        return surface
 
     # TODO:
     # deal with compound word
