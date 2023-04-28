@@ -12,7 +12,7 @@ from yomigana_ebook.checking import is_hira_only, is_kata_only, is_kanji_only
         ("all kata", ALL_KATA, ALL_HIRA, False),
         ("all kanji", "漢字", "かんじ", False),
         ("contains kanji", "感じ", "かんじ", False),
-    ]
+    ],
 )
 def test_is_hira_only(test_case: str, text: str, hira: str, expected: bool):
     for char in ALL_HIRA:
@@ -28,7 +28,7 @@ def test_is_hira_only(test_case: str, text: str, hira: str, expected: bool):
         ("all kata", ALL_KATA, ALL_KATA, True),
         ("all kanji", "漢字", "カンジ", False),
         ("contains kanji", "感じ", "カンジ", False),
-    ]
+    ],
 )
 def test_is_kata_only(test_case: str, text: str, kata: str, expected: bool):
     for char in ALL_KATA:
@@ -45,7 +45,7 @@ def test_is_kata_only(test_case: str, text: str, kata: str, expected: bool):
         ("all kata", ALL_KATA, False),
         ("contains hira", "感じ", False),
         ("contains `々`", "時々", True),
-    ]
+    ],
 )
 def test_is_kanji_only(test_case: str, kanji: str, expected: bool):
     assert is_kanji_only(kanji) == expected

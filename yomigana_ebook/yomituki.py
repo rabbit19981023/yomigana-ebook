@@ -3,7 +3,13 @@ from os.path import commonprefix
 
 from yomigana_ebook.analyzer import Analyzer, Morpheme
 from yomigana_ebook.converter import kata2hira
-from yomigana_ebook.checking import is_unknown, is_hira_only, is_kata_only, is_kanji_only, is_kanji
+from yomigana_ebook.checking import (
+    is_unknown,
+    is_hira_only,
+    is_kata_only,
+    is_kanji_only,
+    is_kanji,
+)
 
 
 analyzer = Analyzer()
@@ -53,11 +59,13 @@ def yomituki_word(surface: str, kata: str) -> str:
         if char == hira_in_surface:
             hira_index_reading = -i - 1
 
-    return f"{prefix}" \
-        f"{ruby_wrap(middle.surface[:hira_index_surface], middle.reading[:hira_index_reading])}" \
-        f"{hira_in_surface}" \
-        f"{ruby_wrap(middle.surface[hira_index_surface+1:], middle.reading[hira_index_reading+1:])}" \
+    return (
+        f"{prefix}"
+        f"{ruby_wrap(middle.surface[:hira_index_surface], middle.reading[:hira_index_reading])}"
+        f"{hira_in_surface}"
+        f"{ruby_wrap(middle.surface[hira_index_surface+1:], middle.reading[hira_index_reading+1:])}"
         f"{suffix}"
+    )
 
 
 def ruby_wrap(kanji: str, hira: str) -> str:
@@ -69,7 +77,7 @@ def cut_by_hira(surface: str, hira: str) -> Tuple[str, Morpheme, str]:
     suffix = find_common_suffix(surface, hira)
     middle = Morpheme(
         surface.removeprefix(prefix).removesuffix(suffix),
-        hira.removeprefix(prefix).removesuffix(suffix)
+        hira.removeprefix(prefix).removesuffix(suffix),
     )
     return (prefix, middle, suffix)
 

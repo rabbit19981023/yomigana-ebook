@@ -12,7 +12,7 @@ fugashi = "^1.2.1"
 unidic = "^1.1.0"
 
 [tool.poetry.group.dev.dependencies]
-autopep8 = "^2.0.2"
+black = "^23.3.0"
 
 [tool.poetry.group.test.dependencies]
 pytest = "^7.3.1"
