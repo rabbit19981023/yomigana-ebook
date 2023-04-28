@@ -3,7 +3,7 @@ from os.path import commonprefix
 
 from yomigana_ebook.analyzer import Analyzer, Morpheme
 from yomigana_ebook.converter import kata2hira
-from yomigana_ebook.checking import is_mark, is_hira_only, is_kata_only, is_kanji_only, is_number_only, is_kanji
+from yomigana_ebook.checking import is_unknown, is_hira_only, is_kata_only, is_kanji_only, is_number_only, is_kanji
 
 
 analyzer = Analyzer()
@@ -19,10 +19,12 @@ def yomituki_sentence(sentence: str) -> str:
 
 
 def yomituki_word(surface: str, kata: str) -> str:
+    # this checking is for `Mecab` only
+    if is_unknown(kata):
+        return surface
+
     hira = kata2hira(kata)
 
-    if is_mark(kata):
-        return surface
     if is_hira_only(surface, hira):
         return surface
     if is_kata_only(surface, kata):

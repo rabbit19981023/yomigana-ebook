@@ -14,10 +14,13 @@ def test_yomituki_sentence(test_case: str, sentence: str, expected: str):
     assert yomituki_sentence(sentence) == expected
 
 
+ANYTHING_UNKNOWN = "anything whose reading is unknown"
+
 @pytest.mark.parametrize(
     "test_case, surface, kata, expected",
     [
-        ("mark", "。", "*", "。"),
+        ("for `Mecab` only: unknown 01", ANYTHING_UNKNOWN, "*", ANYTHING_UNKNOWN),
+        ("for `Mecab` only: unknown 02", ANYTHING_UNKNOWN, None, ANYTHING_UNKNOWN),
         ("all hira", ALL_HIRA, ALL_KATA, ALL_HIRA),
         ("all kata", ALL_KATA, ALL_KATA, ALL_KATA),
         ("all kanji", "漢字", "カンジ", "<ruby>漢字<rt>かんじ</rt></ruby>"),

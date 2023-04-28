@@ -3,8 +3,8 @@ import unicodedata
 from yomigana_ebook.constants import ALL_NUMBER
 
 
-def is_mark(char: str) -> bool:
-    return char == "*"
+def is_unknown(char: str) -> bool:
+    return char in (None, "*")
 
 
 def is_hira_only(text: str, hira: str) -> bool:
