@@ -6,9 +6,11 @@ from yomigana_ebook.converter import kata2hira
 from yomigana_ebook.checking import is_mark, is_hira_only, is_kata_only, is_kanji_only, is_number_only, is_kanji
 
 
+analyzer = Analyzer()
+
+
 def yomituki_sentence(sentence: str) -> str:
     result = ""
-    analyzer = Analyzer()
 
     for morpheme in analyzer.analyze(sentence):
         result += yomituki_word(morpheme.surface, morpheme.reading)
