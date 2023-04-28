@@ -3,7 +3,7 @@ from os.path import commonprefix
 
 from yomigana_ebook.analyzer import Analyzer, Morpheme
 from yomigana_ebook.converter import kata2hira
-from yomigana_ebook.checking import is_unknown, is_hira_only, is_kata_only, is_kanji_only, is_number_only, is_kanji
+from yomigana_ebook.checking import is_unknown, is_hira_only, is_kata_only, is_kanji_only, is_kanji
 
 
 analyzer = Analyzer()
@@ -31,8 +31,6 @@ def yomituki_word(surface: str, kata: str) -> str:
         return surface
     if is_kanji_only(surface):
         return ruby_wrap(surface, hira)
-    if is_number_only(surface):
-        return surface
 
     # yomituki for:
     # hira + kanji: うれし涙
