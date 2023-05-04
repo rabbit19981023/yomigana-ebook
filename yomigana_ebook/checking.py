@@ -8,24 +8,15 @@ def is_unknown(surface: str, reading: str) -> bool:
 
 
 def is_kana_only(text: str) -> bool:
-    for char in text:
-        if (not is_hira(char)) and (not is_kata(char)):
-            return False
-    return True
+    return all((is_hira(char) or is_kata(char)) for char in text)
 
 
 def is_kanji_only(text: str) -> bool:
-    for char in text:
-        if not is_kanji(char):
-            return False
-    return True
+    return all(is_kanji(char) for char in text)
 
 
 def is_latin_only(text: str) -> bool:
-    for char in text:
-        if not is_latin(char):
-            return False
-    return True
+    return all(is_latin(char) for char in text)
 
 
 def is_hira(char: str) -> bool:
