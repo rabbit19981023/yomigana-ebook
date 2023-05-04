@@ -5,9 +5,9 @@ from yomigana_ebook.analyzer import Analyzer
 from yomigana_ebook.converter import kata2hira
 from yomigana_ebook.checking import (
     is_unknown,
-    is_hira_only,
-    is_kata_only,
+    is_kana_only,
     is_kanji_only,
+    is_latin_only,
     is_kanji,
 )
 
@@ -26,40 +26,41 @@ def yomituki_sentence(sentence: str) -> str:
 
 def yomituki_word(surface: str, kata: str) -> str:
     # this checking is for `Mecab` only
-    if is_unknown(kata):
+    if is_unknown(surface, kata):
         return surface
 
-    hira = kata2hira(kata)
-
-    if is_hira_only(surface, hira):
-        return surface
-    if is_kata_only(surface, kata):
+    if is_kana_only(surface):
         return surface
     if is_kanji_only(surface):
-        return ruby_wrap(surface, hira)
+        return ruby_wrap(surface, kata2hira(kata))
+    if is_latin_only(surface):
+        # add space for separating every latin word
+        return " " + surface
 
     # yomituki for:
     # hira + kanji: うれし涙
     # kanji + hira: 見上げて
-    (prefix, (mid_text, mid_hira), suffix) = cut_by_hira(surface, hira)
+    (prefix, (mid_text, mid_hira), suffix) = cut_by_hira(surface, kata2hira(kata))
     if is_kanji_only(mid_text):
         return f"{prefix}{ruby_wrap(mid_text, mid_hira)}{suffix}"
 
     # yomituki for
     # kanji + hira + kanji + hira: 思い出した
-    hira = "".join(char for char in mid_text if not is_kanji(char))
-    hira_index_in_text = mid_text.index(hira)
-    hira_index_in_hira = mid_hira.rindex(hira)
+    return f"{prefix}{yomituki_compound(mid_text, mid_hira)}{suffix}"
 
-    return "{}{}{}{}{}".format(
-        prefix,
-        ruby_wrap(mid_text[:hira_index_in_text], mid_hira[:hira_index_in_hira]),
-        hira,
+
+def yomituki_compound(surface: str, hira: str) -> str:
+    hira_in_surface = "".join(char for char in surface if not is_kanji(char))
+    hira_index_in_surface = surface.index(hira_in_surface)
+    hira_index_in_hira = hira.rindex(hira_in_surface)
+
+    return "{}{}{}".format(
+        ruby_wrap(surface[:hira_index_in_surface], hira[:hira_index_in_hira]),
+        hira_in_surface,
         ruby_wrap(
-            mid_text[hira_index_in_text + len(hira) :],
-            mid_hira[hira_index_in_hira + len(hira) :],
+            surface[hira_index_in_surface + len(hira_in_surface) :],
+            hira[hira_index_in_hira + len(hira_in_surface) :],
         ),
-        suffix,
     )
 
 

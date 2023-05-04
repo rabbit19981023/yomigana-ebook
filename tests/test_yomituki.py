@@ -28,7 +28,11 @@ ANYTHING_UNKNOWN = "anything whose reading is unknown"
         ("for `Mecab` only: unknown 02", ANYTHING_UNKNOWN, None, ANYTHING_UNKNOWN),
         ("all hira", ALL_HIRA, ALL_KATA, ALL_HIRA),
         ("all kata", ALL_KATA, ALL_KATA, ALL_KATA),
+        ("all kata contains mark 01", "チュー", "チュウ", "チュー"),
+        ("all kata contains mark 02", "アルフレッド・チャニング", "アルフレッド・チャニング", "アルフレッド・チャニング"),
         ("all kanji", "漢字", "カンジ", "<ruby>漢字<rt>かんじ</rt></ruby>"),
+        # need to add space for separating every latin word
+        ("all latin", "right", "ライト", " right"),
         ("kanji + hira", "見上げて", "ミアゲテ", "<ruby>見上<rt>みあ</rt></ruby>げて"),
         (
             "hira + kanji",
@@ -42,6 +46,26 @@ ANYTHING_UNKNOWN = "anything whose reading is unknown"
             "オモイダシタ",
             "<ruby>思<rt>おも</rt></ruby>い<ruby>出<rt>だ</rt></ruby>した",
         ),
+        ("special: hira/kata compound", "ッつい", "ッツイ", "ッつい"),
+        (
+            "special: all kanji contains kata 01",
+            "カ月",
+            "カゲツ",
+            "<ruby>カ月<rt>かげつ</rt></ruby>",
+        ),
+        (
+            "special: all kanji contains kata 02",
+            "掛ケ",
+            "カケ",
+            "<ruby>掛ケ<rt>かけ</rt></ruby>",
+        ),
+        (
+            "special: all kanji contains kata 03",
+            "雑司ヶ谷",
+            "ゾウシガヤ",
+            "<ruby>雑司ヶ谷<rt>ぞうしがや</rt></ruby>",
+        ),
+        ("special: numbers contain mark", "二、三", "ニサン", "二、三"),
     ],
 )
 def test_yomituki_word(test_case: str, surface: str, kata: str, expected: str):
