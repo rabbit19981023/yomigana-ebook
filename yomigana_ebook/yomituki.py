@@ -53,33 +53,34 @@ def yomituki_word(surface: str, kata: str) -> str:
 
 
 def yomituki_compound(surface: str, hira: str) -> str:
-    kanji_in_surface_reversed = ""
     hira_in_surface_reversed = ""
 
     for char in surface[::-1]:
         if is_hira(char):
             hira_in_surface_reversed += char
-            continue
 
-        if is_kanji(char) and len(hira_in_surface_reversed) > 0:
+        if is_kanji(char) and hira_in_surface_reversed:
             break
 
-        kanji_in_surface_reversed += char
-
-    if len(hira_in_surface_reversed) == 0:
+    if not hira_in_surface_reversed:
         return ruby_wrap(surface, hira)
 
-    hira_in_surface = "".join(hira_in_surface_reversed[::-1])
-    hira_index_in_surface = surface.rindex(hira_in_surface)
-    hira_index_in_hira = hira.rindex(hira_in_surface)
+    hira_in_surface = hira_in_surface_reversed[::-1]
+    hira_index_in_surface, hira_index_in_hira = (
+        surface.rindex(hira_in_surface),
+        hira.rindex(hira_in_surface),
+    )
+
+    left_surface, left_hira = surface[:hira_index_in_surface], hira[:hira_index_in_hira]
+    right_surface, right_hira = (
+        surface[hira_index_in_surface + len(hira_in_surface) :],
+        hira[hira_index_in_hira + len(hira_in_surface) :],
+    )
 
     return (
-        yomituki_compound(surface[:hira_index_in_surface], hira[:hira_index_in_hira])
+        yomituki_compound(left_surface, left_hira)
         + hira_in_surface
-        + ruby_wrap(
-            "".join(kanji_in_surface_reversed[::-1]),
-            hira[hira_index_in_hira + len(hira_in_surface) :],
-        )
+        + ruby_wrap(right_surface, right_hira)
     )
 
 
