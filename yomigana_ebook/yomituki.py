@@ -1,7 +1,7 @@
 from typing import Tuple, Generator
 from os.path import commonprefix
 
-from fugashi import Tagger
+from fugashi import Tagger  # type: ignore
 from yomigana_ebook.converter import kata2hira
 from yomigana_ebook.checking import (
     is_unknown,
@@ -13,12 +13,12 @@ from yomigana_ebook.checking import (
 )
 
 
-tagger = Tagger()
+tagger = Tagger()  # type: ignore
 
 
 def yomituki_sentence(sentence: str) -> Generator[str, None, None]:
-    for morpheme in tagger(sentence):
-        yield yomituki_word(morpheme.surface, morpheme.feature.kana)
+    for morpheme in tagger(sentence):  # type: ignore
+        yield yomituki_word(morpheme.surface, morpheme.feature.kana)  # type: ignore
 
 
 def yomituki_word(surface: str, kata: str) -> str:
