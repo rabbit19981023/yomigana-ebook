@@ -31,6 +31,7 @@ ANYTHING_UNKNOWN = "anything whose reading is unknown"
         ("all kata contains mark 01", "チュー", "チュウ", "チュー"),
         ("all kata contains mark 02", "アルフレッド・チャニング", "アルフレッド・チャニング", "アルフレッド・チャニング"),
         ("all kanji", "漢字", "カンジ", "<ruby>漢字<rt>かんじ</rt></ruby>"),
+        ("all kanji contains `々`", "日々", "ヒビ", "<ruby>日々<rt>ひび</rt></ruby>"),
         # need to add space for separating every latin word
         ("all latin", "right", "ライト", " right"),
         ("kanji + hira", "見上げて", "ミアゲテ", "<ruby>見上<rt>みあ</rt></ruby>げて"),
@@ -72,11 +73,11 @@ ANYTHING_UNKNOWN = "anything whose reading is unknown"
             "ヒックリカエッテ",
             "<ruby>引<rt>ひ</rt></ruby>っ<ruby>繰<rt>く</rt></ruby>り<ruby>返<rt>かえ</rt></ruby>って",
         ),
-        ("special: old word 01", "間違へ", "まちがえ", "<ruby>間違へ<rt>まちがえ</rt></ruby>"),
-        ("special: old word 02", "教へる", "おしえる", "<ruby>教へる<rt>おしえる</rt></ruby>"),
+        ("special: old word 01", "間違へ", "マチガエ", "<ruby>間違へ<rt>まちがえ</rt></ruby>"),
+        ("special: old word 02", "教へる", "オシエル", "<ruby>教へる<rt>おしえる</rt></ruby>"),
         ("special: old word 03", "思ひ出せ", "オモイダセ", "<ruby>思ひ出せ<rt>おもいだせ</rt></ruby>"),
-        ("special: old word 04", "づゝ", "ずつ", "<ruby>づゝ<rt>ずつ</rt></ruby>"),
-        ("special: old word 05", "かゝはら", "カカワラ", "<ruby>かゝはら<rt>かかわら</rt></ruby>"),
+        ("special: old word 04", "づゝ", "ヅツ", "づゝ"),
+        ("special: old word 05", "かゝはら", "カカワラ", "かゝはら"),
     ],
 )
 def test_yomituki_word(test_case: str, surface: str, kata: str, expected: str):
