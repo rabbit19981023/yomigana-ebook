@@ -1,7 +1,7 @@
 from typing import Tuple, Generator
 from os.path import commonprefix
 
-from yomigana_ebook.analyzer import Analyzer
+from fugashi import Tagger
 from yomigana_ebook.converter import kata2hira
 from yomigana_ebook.checking import (
     is_unknown,
@@ -13,23 +13,24 @@ from yomigana_ebook.checking import (
 )
 
 
-analyzer = Analyzer()
+tagger = Tagger()
 
 
 def yomituki_sentence(sentence: str) -> Generator[str, None, None]:
-    for morpheme in analyzer.analyze(sentence):
-        yield yomituki_word(morpheme.surface, morpheme.reading)
+    for morpheme in tagger(sentence):
+        yield yomituki_word(morpheme.surface, morpheme.feature.kana)
 
 
 def yomituki_word(surface: str, kata: str) -> str:
-    # this checking is for `Mecab` only
     if is_unknown(surface, kata):
         return surface
 
     if is_kana_only(surface):
         return surface
+
     if is_kanji_only(surface):
         return ruby_wrap(surface, kata2hira(kata))
+
     if is_latin_only(surface):
         # add space for separating every latin word
         return " " + surface
