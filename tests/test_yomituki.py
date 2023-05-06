@@ -66,6 +66,17 @@ ANYTHING_UNKNOWN = "anything whose reading is unknown"
             "<ruby>雑司ヶ谷<rt>ぞうしがや</rt></ruby>",
         ),
         ("special: numbers contain mark", "二、三", "ニサン", "二、三"),
+        (
+            "special: triple compound kanji",
+            "引っ繰り返って",
+            "ヒックリカエッテ",
+            "<ruby>引<rt>ひ</rt></ruby>っ<ruby>繰<rt>く</rt></ruby>り<ruby>返<rt>かえ</rt></ruby>って",
+        ),
+        ("special: old word 01", "間違へ", "まちがえ", "<ruby>間違へ<rt>まちがえ</rt></ruby>"),
+        ("special: old word 02", "教へる", "おしえる", "<ruby>教へる<rt>おしえる</rt></ruby>"),
+        ("special: old word 03", "思ひ出せ", "オモイダセ", "<ruby>思ひ出せ<rt>おもいだせ</rt></ruby>"),
+        ("special: old word 04", "づゝ", "ずつ", "<ruby>づゝ<rt>ずつ</rt></ruby>"),
+        ("special: old word 05", "かゝはら", "カカワラ", "<ruby>かゝはら<rt>かかわら</rt></ruby>"),
     ],
 )
 def test_yomituki_word(test_case: str, surface: str, kata: str, expected: str):

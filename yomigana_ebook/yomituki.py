@@ -8,6 +8,7 @@ from yomigana_ebook.checking import (
     is_kana_only,
     is_kanji_only,
     is_latin_only,
+    is_hira,
     is_kanji,
 )
 
@@ -44,23 +45,45 @@ def yomituki_word(surface: str, kata: str) -> str:
     if is_kanji_only(mid_text):
         return f"{prefix}{ruby_wrap(mid_text, mid_hira)}{suffix}"
 
-    # yomituki for
-    # kanji + hira + kanji + hira: 思い出した
-    return f"{prefix}{yomituki_compound(mid_text, mid_hira)}{suffix}"
+    try:
+        # yomituki for
+        # normal compound word: 思い出した
+        # triple compound word: 引っ繰り返って
+        return f"{prefix}{yomituki_compound(mid_text, mid_hira)}{suffix}"
+    except:
+        # yomituki for
+        # old word: 間違へ(まちがえ), 教へる(おしえる), づゝ(ずつ)
+        return ruby_wrap(surface, kata2hira(kata))
 
 
 def yomituki_compound(surface: str, hira: str) -> str:
-    hira_in_surface = "".join(char for char in surface if not is_kanji(char))
-    hira_index_in_surface = surface.index(hira_in_surface)
+    kanji_in_surface_reversed = ""
+    hira_in_surface_reversed = ""
+
+    for char in surface[::-1]:
+        if is_hira(char):
+            hira_in_surface_reversed += char
+            continue
+
+        if is_kanji(char) and len(hira_in_surface_reversed) > 0:
+            break
+
+        kanji_in_surface_reversed += char
+
+    if len(hira_in_surface_reversed) == 0:
+        return ruby_wrap(surface, hira)
+
+    hira_in_surface = "".join(hira_in_surface_reversed[::-1])
+    hira_index_in_surface = surface.rindex(hira_in_surface)
     hira_index_in_hira = hira.rindex(hira_in_surface)
 
-    return "{}{}{}".format(
-        ruby_wrap(surface[:hira_index_in_surface], hira[:hira_index_in_hira]),
-        hira_in_surface,
-        ruby_wrap(
-            surface[hira_index_in_surface + len(hira_in_surface) :],
+    return (
+        yomituki_compound(surface[:hira_index_in_surface], hira[:hira_index_in_hira])
+        + hira_in_surface
+        + ruby_wrap(
+            "".join(kanji_in_surface_reversed[::-1]),
             hira[hira_index_in_hira + len(hira_in_surface) :],
-        ),
+        )
     )
 
 
