@@ -1,4 +1,4 @@
-from typing import Tuple
+from typing import Tuple, Generator
 from os.path import commonprefix
 
 from yomigana_ebook.analyzer import Analyzer
@@ -16,13 +16,9 @@ from yomigana_ebook.checking import (
 analyzer = Analyzer()
 
 
-def yomituki_sentence(sentence: str) -> str:
-    result = ""
-
+def yomituki_sentence(sentence: str) -> Generator[str, None, None]:
     for morpheme in analyzer.analyze(sentence):
-        result += yomituki_word(morpheme.surface, morpheme.reading)
-
-    return result
+        yield yomituki_word(morpheme.surface, morpheme.reading)
 
 
 def yomituki_word(surface: str, kata: str) -> str:

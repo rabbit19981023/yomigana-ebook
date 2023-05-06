@@ -15,7 +15,7 @@ from yomigana_ebook.yomituki import yomituki_sentence, yomituki_word
     ],
 )
 def test_yomituki_sentence(test_case: str, sentence: str, expected: str):
-    assert yomituki_sentence(sentence) == expected
+    assert "".join(yomituki_sentence(sentence)) == expected
 
 
 ANYTHING_UNKNOWN = "anything whose reading is unknown"
