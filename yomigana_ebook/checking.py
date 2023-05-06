@@ -1,10 +1,8 @@
 import unicodedata
 
-from yomigana_ebook.constants import ALL_HIRA, ALL_KATA, ALL_LATIN
-
 
 def is_unknown(surface: str, reading: str) -> bool:
-    return "、" in surface or reading in (None, "*")
+    return reading in (None, "*") or "、" in surface
 
 
 def is_kana_only(text: str) -> bool:
@@ -20,11 +18,11 @@ def is_latin_only(text: str) -> bool:
 
 
 def is_hira(char: str) -> bool:
-    return char in ALL_HIRA
+    return "HIRAGANA" in unicodedata.name(char)
 
 
 def is_kata(char: str) -> bool:
-    return char in ALL_KATA
+    return "KATAKANA" in unicodedata.name(char)
 
 
 def is_kanji(char: str) -> bool:
@@ -36,11 +34,8 @@ def is_kanji(char: str) -> bool:
     if "IDEOGRAPHIC ITERATION MARK" in unicode_name:
         return True
 
-    if char in ALL_KATA:
-        return True
-
     return False
 
 
 def is_latin(char: str) -> bool:
-    return char in ALL_LATIN
+    return "LATIN" in unicodedata.name(char)
