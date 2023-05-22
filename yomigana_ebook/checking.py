@@ -1,4 +1,4 @@
-import unicodedata
+from unicodedata import name as get_unicode_name
 
 
 def is_unknown(surface: str, reading: str) -> bool:
@@ -18,15 +18,15 @@ def is_latin_only(text: str) -> bool:
 
 
 def is_hira(char: str) -> bool:
-    return "HIRAGANA" in unicodedata.name(char)
+    return "HIRAGANA" in get_unicode_name(char)
 
 
 def is_kata(char: str) -> bool:
-    return "KATAKANA" in unicodedata.name(char)
+    return "KATAKANA" in get_unicode_name(char)
 
 
 def is_kanji(char: str) -> bool:
-    unicode_name = unicodedata.name(char)
+    unicode_name = get_unicode_name(char)
 
     if "CJK UNIFIED IDEOGRAPH" in unicode_name:
         return True
@@ -38,4 +38,4 @@ def is_kanji(char: str) -> bool:
 
 
 def is_latin(char: str) -> bool:
-    return "LATIN" in unicodedata.name(char)
+    return "LATIN" in get_unicode_name(char)

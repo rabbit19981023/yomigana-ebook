@@ -1,4 +1,4 @@
-import warnings
+from warnings import filterwarnings
 from typing import IO
 from zipfile import ZipFile, ZIP_DEFLATED
 
@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup, NavigableString, Tag, XMLParsedAsHTMLWarning
 from yomigana_ebook.yomituki import yomituki_sentence
 
 
-warnings.filterwarnings("ignore", category=XMLParsedAsHTMLWarning, module="bs4")
+filterwarnings("ignore", category=XMLParsedAsHTMLWarning, module="bs4")
 
 
 def process_ebook(reader: IO[bytes], writer: IO[bytes]):
