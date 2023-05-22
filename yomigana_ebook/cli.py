@@ -38,3 +38,7 @@ def process_ebooks(arg_paths: List[str]):
             end = time() - start
             print(f"this process takes {end} secs.")
             print()
+
+
+if __name__ == "__main__":
+    main()
