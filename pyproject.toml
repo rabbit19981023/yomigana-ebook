@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "yomigana-ebook"
 version = "0.1.0"
-description = "make learning Japanese easier by adding readings to kanji in the e-book"
+description = "Make learning Japanese easier by adding readings for every kanji in the eBook"
 authors = ["Yu Chen <rabbit19981023@gmail.com>"]
 readme = "README.md"
 
