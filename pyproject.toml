@@ -5,6 +5,8 @@ description = "Make learning Japanese easier by adding readings for every kanji 
 license = "MIT"
 authors = ["Yu Chen <rabbit19981023@gmail.com>"]
 readme = "README.md"
+homepage = "https://github.com/rabbit19981023/yomigana-ebook"
+repository = "https://github.com/rabbit19981023/yomigana-ebook"
 
 [tool.poetry.dependencies]
 python = "^3.11"
