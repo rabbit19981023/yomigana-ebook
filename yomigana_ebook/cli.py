@@ -28,15 +28,15 @@ def process_ebooks(arg_paths: List[str]):
         output_path = path.join(file_dir, f"with-yomigana_{file_name}")
 
         with open(file_path, "rb") as f_reader, open(output_path, "wb") as f_writer:
-            start = time()
-
+            start_time = time()
             print()
-            print(f"[start] parsing your ebook: {file_path}")
-            process_ebook(f_reader, f_writer)
-            print(f"[done]  here's the parsed ebook: {output_path}")
+            print(f"[start] parsing the ebook: {file_path}")
 
-            end = time() - start
-            print(f"this process takes {end} secs.")
+            process_ebook(f_reader, f_writer)
+
+            end_time = time() - start_time
+            print(f"[done]  here's the parsed ebook: {output_path}")
+            print(f"this ebook takes {end_time} secs to process.")
             print()
 
 
