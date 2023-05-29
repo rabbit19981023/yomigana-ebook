@@ -1,0 +1,172 @@
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+
+    color-scheme: dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    display: flex;
+    place-items: center;
+
+    margin: 0;
+
+    min-width: 320px;
+    min-height: 100vh;
+}
+
+#app {
+    max-width: 1280px;
+    text-align: center;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+button {
+    font-family: inherit;
+    font-size: 1em;
+    font-weight: 500;
+
+    border-radius: 8px;
+    border: 1px solid transparent;
+
+    background-color: #1a1a1a;
+    padding: 0.6em 1.2em;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+
+button:hover {
+    border-color: #646cff;
+}
+
+button:focus,
+button:focus-visible {
+    outline: 4px auto -webkit-focus-ring-color;
+}
+
+.loader {
+    display: none;
+
+    position: fixed;
+    right: 0;
+    top: 0;
+
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+.loader.enable {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 10;
+}
+
+.loader.enable .dot {
+    opacity: 0;
+    animation: dot-animation 2s infinite;
+}
+
+.loader.enable .dot-1 {
+    animation-delay: 0s;
+}
+
+.loader.enable .dot-2 {
+    animation-delay: 0.35s;
+}
+
+.loader.enable .dot-3 {
+    animation-delay: 0.65s;
+}
+
+@keyframes dot-animation {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+.drop-container {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 10px;
+    border: 2px dashed #555;
+
+    color: #888;
+    gap: 10px;
+    padding: 50px;
+    cursor: pointer;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+
+.drop-title {
+    color: #888;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    transition: color .2s ease-in-out;
+}
+
+.drop-container:hover {
+    border-color: #747bff;
+}
+
+.drop-container:hover .drop-title {
+    color: #747bff;
+}
+
+input[type=file] {
+    color: #888;
+
+    padding: 5px;
+    padding-right: 25px;
+
+    border-radius: 10px;
+    border: 1px solid #555;
+}
+
+input[type=file]:hover {
+    cursor: pointer;
+}
+
+input[type=file]::file-selector-button {
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+
+    border-radius: 8px;
+    border: 1px solid transparent;
+
+    padding: 0.6em 1.2em;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+
+input[type=file]::file-selector-button:hover {
+    border-color: #747bff;
+}

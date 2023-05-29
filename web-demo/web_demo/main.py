@@ -1,9 +1,29 @@
-from fastapi import FastAPI
+from typing import Annotated
+from io import BytesIO
+
+from fastapi import FastAPI, File
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse, StreamingResponse
+
+from yomigana_ebook.process_ebook import process_ebook
 
 
 app = FastAPI()
 
+app.mount("/assets", StaticFiles(directory="client/dist/assets"), "assets")
+
 
 @app.get("/")
-async def root():
-    return {"msg": "hello world"}
+async def index():
+    return FileResponse("client/dist/index.html")
+
+
+@app.post("/api/process-ebook")
+async def process_ebook_handler(ebook: Annotated[bytes, File()]):
+    return StreamingResponse(process_ebook_streamer(ebook))
+
+
+async def process_ebook_streamer(ebook: bytes):
+    with BytesIO(ebook) as reader, BytesIO() as writer:
+        process_ebook(reader, writer)
+        yield writer.getvalue()

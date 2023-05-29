@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add yomigana to your Japanese eBooks</title>
+</head>
+
+<body>
+    <div id="app">
+        <div class="loader">
+            <span>The server is processing the eBook, this process will take a few seconds</span>
+            <span class="dot dot-1">．</span>
+            <span class="dot dot-2">．</span>
+            <span class="dot dot-3">．</span>
+        </div>
+
+        <div class="drop-container">
+            <span class="drop-title">Drop files here</span>
+            <span>or</span>
+            <input type="file" class="input-file" required>
+            <button class="btn-submit">parse</button>
+        </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+</body>
+
+</html>

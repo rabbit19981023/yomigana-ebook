@@ -11,6 +11,7 @@ python = "^3.11"
 yomigana-ebook = {path = ".."}
 fastapi = "^0.95.2"
 uvicorn = {extras = ["standard"], version = "^0.22.0"}
+python-multipart = "^0.0.6"
 
 [tool.poetry.group.dev.dependencies]
 black = "^23.3.0"
