@@ -1,3 +1,5 @@
+import asyncio
+
 from typing import Annotated
 from io import BytesIO
 
@@ -25,5 +27,5 @@ async def process_ebook_handler(ebook: Annotated[bytes, File()]):
 
 async def process_ebook_streamer(ebook: bytes):
     with BytesIO(ebook) as reader, BytesIO() as writer:
-        process_ebook(reader, writer)
+        await asyncio.to_thread(process_ebook, reader, writer)
         yield writer.getvalue()
