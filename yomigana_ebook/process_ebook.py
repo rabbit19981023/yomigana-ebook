@@ -47,7 +47,7 @@ def process_tag(tag: Tag):
     if tag.name == "ruby":
         return
 
-    if type(tag) is NavigableString:
+    if isinstance(tag, NavigableString):
         tag.replace_with("".join(yomituki_sentence(tag)))
         return
 
