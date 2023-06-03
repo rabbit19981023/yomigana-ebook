@@ -1,10 +1,10 @@
 # Web Demo
 
-This is a web demo for the `yomigana_ebook` package.
+This is a web demo for the `yomigana-ebook` package.
 
 ## Usage
 
-To use it, just follow the steps below:
+To use it, you can follow the steps below:
 
 1. install the dependencies and download the `unidic` dictionary:
 
@@ -28,4 +28,4 @@ $ cd ..
 $ uvicorn web_demo.main:app
 ```
 
-4. just open your browser and navigate to `http://localhost:8000`
+4. finally, just open your browser and navigate to `http://localhost:8000` to use it!
