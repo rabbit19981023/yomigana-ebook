@@ -1,7 +1,7 @@
 import pytest
 
 from yomigana_ebook.constants import ALL_HIRA, ALL_KATA
-from yomigana_ebook.yomituki import yomituki_sentence, yomituki_word
+from yomigana_ebook.yomituki import yomituki, yomituki_word
 
 
 @pytest.mark.parametrize(
@@ -24,8 +24,8 @@ from yomigana_ebook.yomituki import yomituki_sentence, yomituki_word
         ),
     ],
 )
-def test_yomituki_sentence(test_case: str, sentence: str, expected: str):
-    assert "".join(yomituki_sentence(sentence)) == expected
+def test_yomituki(test_case: str, sentence: str, expected: str):
+    assert "".join(yomituki(sentence)) == expected
 
 
 ANYTHING_UNKNOWN = "anything whose reading is unknown"

@@ -4,7 +4,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 from concurrent.futures import Future, ProcessPoolExecutor, as_completed
 
 from bs4 import BeautifulSoup, NavigableString, Tag, XMLParsedAsHTMLWarning
-from yomigana_ebook.yomituki import yomituki_sentence
+from yomigana_ebook.yomituki import yomituki
 
 
 filterwarnings("ignore", category=XMLParsedAsHTMLWarning, module="bs4")
@@ -48,7 +48,7 @@ def process_tag(tag: Tag):
         return
 
     if isinstance(tag, NavigableString):
-        tag.replace_with("".join(yomituki_sentence(tag)))
+        tag.replace_with("".join(yomituki(tag)))
         return
 
     if hasattr(tag, "children"):

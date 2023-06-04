@@ -16,7 +16,7 @@ from yomigana_ebook.checking import (
 tagger = Tagger()  # type: ignore
 
 
-def yomituki_sentence(sentence: str) -> Generator[str, None, None]:
+def yomituki(sentence: str) -> Generator[str, None, None]:
     # split sentence by whitespaces
     sub_sentences = sentence.split(" ")
 
