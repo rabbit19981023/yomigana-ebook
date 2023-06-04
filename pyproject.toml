@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "yomigana-ebook"
 version = "0.2.1"
-keywords = ["japanese", "lightnovel", "ebook", "epub", "furigana", "yomigana", "kanji", "mecab", "unidic"]
+keywords = ["japanese", "lightnovel", "ebook", "epub", "furigana", "yomigana", "kanji", "mecab", "unidic", "nlp"]
 description = "Make learning Japanese easier by adding readings for every kanji in the eBook"
 license = "MIT"
 authors = ["Yu Chen <rabbit19981023@gmail.com>"]
