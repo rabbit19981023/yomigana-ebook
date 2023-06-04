@@ -17,7 +17,21 @@ tagger = Tagger()  # type: ignore
 
 
 def yomituki_sentence(sentence: str) -> Generator[str, None, None]:
-    for morpheme in tagger(sentence):  # type: ignore
+    # split sentence by whitespaces
+    sub_sentences = sentence.split(" ")
+
+    last_index = len(sub_sentences) - 1
+
+    # re-insert the whitespaces where they used to be
+    for i, sub_sentence in enumerate(sub_sentences):
+        yield from yomituki_text(sub_sentence)
+
+        if i < last_index:
+            yield " "
+
+
+def yomituki_text(text: str) -> Generator[str, None, None]:
+    for morpheme in tagger(text):  # type: ignore
         yield yomituki_word(morpheme.surface, morpheme.feature.kana)  # type: ignore
 
 
@@ -32,8 +46,7 @@ def yomituki_word(surface: str, kata: str) -> str:
         return ruby_wrap(surface, kata2hira(kata))
 
     if is_latin_only(surface):
-        # add space for separating every latin word
-        return " " + surface
+        return surface
 
     # yomituki for:
     # hira + kanji: うれし涙

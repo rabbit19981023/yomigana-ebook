@@ -12,6 +12,16 @@ from yomigana_ebook.yomituki import yomituki_sentence, yomituki_word
             "月が綺麗ですね！",
             "<ruby>月<rt>つき</rt></ruby>が<ruby>綺麗<rt>きれい</rt></ruby>ですね！",
         ),
+        (
+            "sentence with whitespaces 01",
+            "This project is aimed at making Japanese eBooks more friendly to those who are learning Japanese now by adding readings for every Kanji in the eBooks.",
+            "This project is aimed at making Japanese eBooks more friendly to those who are learning Japanese now by adding readings for every Kanji in the eBooks.",
+        ),
+        (
+            "sentence with whitespaces 02 (even with full whitespaces)",
+            "本好きの下剋上 〜司書になるためには手段を選んでいられません〜 第一部　兵士の娘Ｉ",
+            "<ruby>本好<rt>ほんず</rt></ruby>きの<ruby>下剋上<rt>げこくじょう</rt></ruby> 〜<ruby>司書<rt>ししょ</rt></ruby>になるためには<ruby>手段<rt>しゅだん</rt></ruby>を<ruby>選<rt>えら</rt></ruby>んでいられません〜 <ruby>第<rt>だい</rt></ruby><ruby>一<rt>いっ</rt></ruby><ruby>部<rt>ぶ</rt></ruby>　<ruby>兵士<rt>へいし</rt></ruby>の<ruby>娘<rt>むすめ</rt></ruby>Ｉ",
+        ),
     ],
 )
 def test_yomituki_sentence(test_case: str, sentence: str, expected: str):
@@ -32,8 +42,7 @@ ANYTHING_UNKNOWN = "anything whose reading is unknown"
         ("all kata contains mark 02", "アルフレッド・チャニング", "アルフレッド・チャニング", "アルフレッド・チャニング"),
         ("all kanji", "漢字", "カンジ", "<ruby>漢字<rt>かんじ</rt></ruby>"),
         ("all kanji contains `々`", "日々", "ヒビ", "<ruby>日々<rt>ひび</rt></ruby>"),
-        # need to add space for separating every latin word
-        ("all latin", "right", "ライト", " right"),
+        ("all latin", "right", "ライト", "right"),
         ("kanji + hira", "見上げて", "ミアゲテ", "<ruby>見上<rt>みあ</rt></ruby>げて"),
         (
             "hira + kanji",
