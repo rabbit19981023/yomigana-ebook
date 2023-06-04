@@ -12,3 +12,6 @@ __pycache__/
 
 # builds
 /dist
+
+# ebooks for testing
+*.epub
