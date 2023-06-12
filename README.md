@@ -6,23 +6,86 @@ To achieve this, the project utilizes Mecab, a Japanese morphological analyzer, 
 
 ## Usage
 
-you can install the package via `pip`:
+1. install the package from `PyPI`:
 
-`$ pip install yomigana-ebook`
+    ```
+    # install the package
+    $ pip install yomigana-ebook
 
-then download the `unidic` dictionary:
+    # download the unidic dictionary
+    $ python -m unidic download
 
-`$ python -m unidic download`
+    # you can convert your japanese ebooks now!
+    $ yomigana_ebook [your-ebooks]
+    ```
 
-now you can use it:
+2. build from the source:
 
-`$ yomigana_ebook <your-ebooks>`
+    ```
+    $ git clone https://github.com/rabbit19981023/yomigana-ebook.git
 
-or just clone the repo to use it:
+    # install the project
+    $ pip install ./yomigana-ebook
 
-```bash
-$ git clone https://github.com/rabbit19981023/yomigana-ebook.git
-$ pip install .
-$ python -m unidic download
-$ yomigana_ebook <your-ebooks>
+    # download the unidic dictionary
+    $ python -m unidic download
+
+    # you can convert your japanese ebooks now!
+    $ yomigana_ebook [your-ebooks]
+    ```
+
+### Usage (For Windows Users)
+
+There's a known bug in Windows, see polm/fugashi#42 for more information
+
+To fix it, you have to install the package in an isolated `virtualenv` and run the cli script (`$ yomigana_ebook [your-ebooks]`) inside that `virtualenv`.
+
+Here are some examples:
+
+1. install the package from `PyPI`:
+
+    ```
+    # create the virtualenv
+    $ python -m venv .venv
+
+    # get into the virtualenv
+    $ .venv\Scripts\activate
+
+    # install the package
+    $ pip install yomigana-ebook
+
+    # download the unidic dictionary
+    $ python -m unidic download
+
+    # you can convert your japanese ebooks now!
+    $ yomigana_ebook [your-ebooks]
+    ```
+
+2. build from source:
+
+    ```
+    $ git clone https://github.com/rabbit19981023/yomigana-ebook.git
+
+    $ cd yomigana-ebook
+
+    # create the virtualenv
+    $ python -m venv .venv
+
+    # get into the virtualenv
+    $ .venv\Scripts\activate
+
+    # install the project
+    $ pip install .
+
+    # download the unidic dictionary
+    $ python -m unidic download
+
+    # you can convert your japanese ebooks now!
+    $ yomigana_ebook [your-ebooks]
+    ```
+
+To leave the `virtualenv` you entered is just one command:
+
+```
+$ deactivate
 ```
