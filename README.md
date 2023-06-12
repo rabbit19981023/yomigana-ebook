@@ -34,11 +34,11 @@ To achieve this, the project utilizes Mecab, a Japanese morphological analyzer, 
     $ yomigana_ebook [your-ebooks]
     ```
 
-### Usage (For Windows Users)
+### For Windows Users
 
 There's a known bug in Windows, see polm/fugashi#42 for more information
 
-To fix it, you have to install the package in an isolated `virtualenv` and run the cli script (`$ yomigana_ebook [your-ebooks]`) inside that `virtualenv`.
+To solve it, you must install & use the package in an isolated `virtualenv`:
 
 Here are some examples:
 
@@ -84,7 +84,7 @@ Here are some examples:
     $ yomigana_ebook [your-ebooks]
     ```
 
-To leave the `virtualenv` you entered is just one command:
+To leave the `virtualenv`, just by a simple command:
 
 ```
 $ deactivate
