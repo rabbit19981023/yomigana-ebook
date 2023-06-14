@@ -107,3 +107,7 @@ $ deactivate
     ```
 
 3. open your browser and navigate to `http://localhost:8000` to use it!
+
+## Credits
+
+This tool was inspired by [Mumumu4/furigana4epub](https://github.com/Mumumu4/furigana4epub) & [itsupera/furiganalyse](https://github.com/itsupera/furiganalyse), and has some code from them.
