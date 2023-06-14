@@ -10,7 +10,7 @@ RUN npm install && npm run build
 # DO NOT use `python:alpine` as the base image for python projects
 # It could causes problems while installing packages and have a much longer building time
 
-FROM python:slim as build-backend
+FROM python:slim as build-webapp
 
 WORKDIR /build
 
@@ -33,8 +33,8 @@ WORKDIR /app
 
 COPY --from=build-client /build/dist ./client/dist
 
-COPY --from=build-backend /usr/local/bin /usr/local/bin
-COPY --from=build-backend /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+COPY --from=build-webapp /usr/local/bin /usr/local/bin
+COPY --from=build-webapp /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
 
 COPY web-demo/pyproject.toml web-demo/README.md ./
 COPY web-demo/web_demo ./web_demo
