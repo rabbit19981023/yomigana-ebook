@@ -1,0 +1,16 @@
+dist/
+node_modules/
+
+.venv/
+__pycache__/
+
+.vscode/
+poetry.*
+.git/
+.gitignore
+Dockerfile.*
+
+tests/
+.pytest_cache/
+
+*.epub
