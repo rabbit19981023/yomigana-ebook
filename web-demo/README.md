@@ -29,3 +29,7 @@ $ uvicorn web_demo.main:app
 ```
 
 4. finally, just open your browser and navigate to `http://localhost:8000` to use it!
+
+### Run the web demo via Docker
+
+please see [Project README](../README.md#run-the-web-demo-via-docker)
