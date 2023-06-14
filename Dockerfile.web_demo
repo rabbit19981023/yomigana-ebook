@@ -1,0 +1,42 @@
+FROM node:alpine as build-client
+
+WORKDIR /build
+
+COPY web-demo/client /build
+RUN npm install && npm run build
+
+# --------------------
+
+# DO NOT use `python:alpine` as the base image for python projects
+# It could causes problems while installing packages and have a much longer building time
+
+FROM python:slim as build-backend
+
+WORKDIR /build
+
+COPY pyproject.toml README.md ./
+COPY yomigana_ebook ./yomigana_ebook
+
+COPY web-demo/pyproject.toml web-demo/README.md ./web-demo/
+COPY web-demo/web_demo ./web-demo/web_demo
+
+WORKDIR /build/web-demo
+
+RUN pip install .
+RUN python -m unidic download
+
+# --------------------
+
+FROM python:slim as production
+
+WORKDIR /app
+
+COPY --from=build-client /build/dist ./client/dist
+
+COPY --from=build-backend /usr/local/bin /usr/local/bin
+COPY --from=build-backend /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
+
+COPY web-demo/pyproject.toml web-demo/README.md ./
+COPY web-demo/web_demo ./web_demo
+
+ENTRYPOINT ["uvicorn", "web_demo.main:app"]
