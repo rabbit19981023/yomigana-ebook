@@ -92,18 +92,18 @@ $ deactivate
 
 ### Run the web demo via Docker
 
-> Note: you NEED to run these commands in the project root, NOT in `web-demo` directory!
+> NOTE: you NEED to run these commands in the project root, NOT in `web-demo` directory!
 
 1. first we need to build the image:
 
-```
-$ docker build -t yomigana-ebook/web-demo -f Dockerfile.web_demo .
-```
+    ```
+    $ docker build -t yomigana-ebook/web-demo -f Dockerfile.web_demo .
+    ```
 
 2. then just run the container:
 
-```
-$ docker run --rm -p 8000:8000 yomigana-ebook/web-demo --host 0.0.0.0
-```
+    ```
+    $ docker run --rm -p 8000:8000 yomigana-ebook/web-demo --host 0.0.0.0
+    ```
 
 3. open your browser and navigate to `http://localhost:8000` to use it!
