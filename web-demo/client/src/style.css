@@ -170,3 +170,19 @@ input[type=file]::file-selector-button {
 input[type=file]::file-selector-button:hover {
     border-color: #747bff;
 }
+
+.donate {
+    margin-bottom: 10px;
+}
+
+.footer {
+    color: #999;
+
+    /* make this element at center of the page */
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+    bottom: 15px;
+}

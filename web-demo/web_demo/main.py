@@ -20,6 +20,11 @@ async def index():
     return FileResponse("client/dist/index.html")
 
 
+@app.get("/favicon.ico")
+async def get_favicon():
+    return FileResponse("client/dist/favicon.ico")
+
+
 @app.post("/api/process-ebook")
 async def process_ebook_handler(ebook: Annotated[bytes, File()]):
     return StreamingResponse(process_ebook_streamer(ebook))
