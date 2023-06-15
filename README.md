@@ -97,17 +97,17 @@ $ deactivate
 1. first we need to build the image:
 
     ```
-    $ docker build -t yomigana-ebook/web-demo -f Dockerfile.web_demo .
+    $ docker build -t yomigana-ebook/web-demo -f Dockerfile.web-demo .
     ```
 
-2. then just run the container:
+2. then run the container:
 
     ```
     $ docker run --rm -p 8000:8000 yomigana-ebook/web-demo --host 0.0.0.0
     ```
 
-3. open your browser and navigate to `http://localhost:8000` to use it!
+3. finally just open your browser and navigate to `http://localhost:8000` to use it!
 
 ## Credits
 
-This tool was inspired by [Mumumu4/furigana4epub](https://github.com/Mumumu4/furigana4epub) & [itsupera/furiganalyse](https://github.com/itsupera/furiganalyse), and has some code from them.
+This project was inspired by [Mumumu4/furigana4epub](https://github.com/Mumumu4/furigana4epub) & [itsupera/furiganalyse](https://github.com/itsupera/furiganalyse), and has some code from them.
