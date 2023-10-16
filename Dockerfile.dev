@@ -1,4 +1,5 @@
-FROM python
+# DO NOT use python 3.12, it could cause dependency problems
+FROM python:3.11.6-bookworm
 
 WORKDIR /workspace/yomigana-ebook
 

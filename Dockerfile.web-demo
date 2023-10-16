@@ -7,9 +7,9 @@ RUN npm install && npm run build
 
 # --------------------
 
+# DO NOT use python 3.12, it could cause dependency problems
 # DO NOT use `python:alpine` as the base image for python projects
 # It could causes problems while installing packages and have a much longer building time
-
 FROM python:3.11.6-slim-bookworm as build-webapp
 
 WORKDIR /build
