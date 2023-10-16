@@ -10,7 +10,8 @@ RUN npm install && npm run build
 # DO NOT use `python:alpine` as the base image for python projects
 # It could causes problems while installing packages and have a much longer building time
 
-FROM python:slim as build-webapp
+# FROM python:slim as build-webapp
+FROM python:3.11.6-slim-bookworm as build-webapp
 
 WORKDIR /build
 
@@ -27,7 +28,8 @@ RUN python -m unidic download
 
 # --------------------
 
-FROM python:slim as production
+# FROM python:slim as production
+FROM python:3.11.6-slim-bookworm as production
 
 WORKDIR /app
 
