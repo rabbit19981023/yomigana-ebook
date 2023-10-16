@@ -8,7 +8,7 @@ from yomigana_ebook.process_ebook import process_ebook
 
 def main():
     parser = ArgumentParser(
-        description="An elegant way to add yomigana to your japanese ebooks! (Using Mecab and Unidic)"
+        description="The fastest converter to add yomigana(readings) to Japanese epub eBooks! (Using Mecab and Unidic)"
     )
     parser.add_argument("ebook_paths", type=str, nargs="*")
     args = parser.parse_args()

@@ -4,6 +4,8 @@ This project is aimed at making Japanese eBooks more friendly to those who are l
 
 To achieve this, the project utilizes Mecab, a Japanese morphological analyzer, and Unidic, a dictionary developed by NICT, to tokenize words and obtain the corresponding yomigana (reading) of each word. This information is then inserted above or besides the kanji characters in the eBook text, allowing readers to easily read and understand the pronunciation of each word.
 
+> This tool is also the fastest converter now. (compared to [Mumumu4/furigana4epub](https://github.com/Mumumu4/furigana4epub) & [itsupera/furiganalyse](https://github.com/itsupera/furiganalyse))
+
 ## Usage
 
 1. install the package from `PyPI`:
